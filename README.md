@@ -1,21 +1,63 @@
-*Psst — looking for a more complete solution? Check out [SvelteKit](https://kit.svelte.dev), the official framework for building web applications of all sizes, with a beautiful development experience and flexible filesystem-based routing.*
+# Replace HASURA Credentials
 
-*Looking for a shareable component template instead? You can [use SvelteKit for that as well](https://kit.svelte.dev/docs#packaging) or the older [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+Path: svelte_test/src/apollo.js
 
----
+Replace HASURA Secret Key in headers and Hasura API in wsLink and httpLink.
 
-# svelte app
+# Challenge App
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
+You have a json file with following structure (example)
 
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
+```json
+[
+  { 
+    "id": 1,
+    "title": "Hello",
+    "description": "World"
+  },
+  { 
+    "id": 2,
+    "title": "Hello 2",
+    "description": "World 2"
+  },
+  { 
+    "id": 3,
+    "title": "Hello 3",
+    "description": "World 3"
+  }
+]
 ```
 
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+Create app using postgres, hasura, and nextjs | sveltekit
+
+Postgres must contain only 1 table `long_tails` with fields `tail` as string and `json_id` as number, with data like
+
+```csv
+tail, json_id
+best-hello-ever, 1
+best-hello-world-ever, 2
+best-world-ever, 3
+```
+
+_`json_id` is 1-1 relation to json at top_
+
+I want accessing app at `localhost:3000/{tail}` i.e. (`localhost:3000/best-hello-ever` etc)
+to see the `title` and `description` on the screen.
+
+- I want to see changes on my screen if I edit json and reload the page.
+- Web app above must use only 1 fetch to hasura and only to hasura (no other fetches are allowed).
+- App above must be reproducible on linux and mac machines, don't use clouds and must be easy to setup (1 command).
+- App must have good dev experience (i.e. all that modern hot reloads etc)
+- You must think about json above that it can be placed anywhere not only on local file system.
+
+## Output we need
+
+github repository with app above, and instructions how we can setup/work with app on local env.
+
+## Bonus point
+
+If you would depoy it anywhere and provide a link to app (deploy must be documented/configured too)
+
 
 
 ## Get started
@@ -23,7 +65,7 @@ cd svelte-app
 Install the dependencies...
 
 ```bash
-cd svelte-app
+cd ChallengeApp-app
 npm install
 ```
 
