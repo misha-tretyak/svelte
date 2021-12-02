@@ -5,7 +5,7 @@ import { split } from "apollo-link";
 import { HttpLink } from "apollo-link-http";
 import { getMainDefinition } from "apollo-utilities";
 
-const headers = {'content-type': 'application/json', 'x-hasura-admin-secret': 'tMVTDzPWxcs456LZCc8aFRXdJYicJTMkjL1W9sfHULgjHjcXw17LiQx7dzd2k2Bt'};
+const headers = {'content-type': 'application/json', 'x-hasura-admin-secret': 'your-hasura-secret'};
 const getHeaders = () => {
   return headers;
 };
@@ -13,7 +13,7 @@ const getHeaders = () => {
 const cache = new InMemoryCache();
 
 const wsLink = new WebSocketLink({
-  uri: "wss://artistic-osprey-10.hasura.app/v1/graphql",
+  uri: "wss-hasura-api",
   options: {
     reconnect: true,
     lazy: true,
@@ -24,7 +24,7 @@ const wsLink = new WebSocketLink({
 });
 
 const httpLink = new HttpLink({
-  uri: "https://artistic-osprey-10.hasura.app/v1/graphql",
+  uri: "https-hasura-api",
   headers: getHeaders()
 });
 
